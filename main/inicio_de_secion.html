@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohlalab - Login / Registro</title>
+    <link rel="stylesheet" href="inicio_de_secion.css">
+</head>
+<body class="bg-login"> 
+    <div class="overlay"></div> 
+    <div class="main-wrapper">
+        <a href="index.html" class="btn-retorno">Volver al inicio</a>
+
+        <div class="container">
+            <div class="box login-box">
+                <h2>Bienvenida</h2>
+                <p>Ingresa tus datos para agendar</p>
+                <form id="loginForm">
+                    <input type="email" id="loginCorreo" placeholder="Correo electrónico" required>
+                    <input type="password" id="loginPass" placeholder="Contraseña" required>
+                    <button type="submit" class="btn-form">Entrar</button>
+                </form>
+            </div>
+
+            <div class="box register-box">
+                <h2>Únete a Ohlalab</h2>
+                <p>Crea tu cuenta gratis</p>
+                <form id="registerForm">
+                    <input type="text" id="regNombre" placeholder="Nombre completo" required>
+                    <input type="email" id="regCorreo" placeholder="Correo electrónico" required>
+                    <input type="password" id="regPass" placeholder="Contraseña" required>
+                    <button type="submit" class="btn-form">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA PARA REGISTRARSE ---
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const datos = {
+                nombre: document.getElementById('regNombre').value,
+                correo: document.getElementById('regCorreo').value,
+                password: document.getElementById('regPass').value
+            };
+
+            try {
+                const res = await fetch('/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                const result = await res.json();
+                if (result.success) {
+                    alert('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.');
+                    document.getElementById('registerForm').reset();
+                } else {
+                    alert('Error: ' + (result.error || 'No se pudo crear la cuenta'));
+                }
+            } catch (err) {
+                alert('Error de conexión con el servidor.');
+            }
+        });
+
+        // --- LÓGICA PARA INICIAR SESIÓN ---
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const datos = {
+                correo: document.getElementById('loginCorreo').value,
+                password: document.getElementById('loginPass').value
+            };
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                const result = await res.json();
+                
+                if (result.success) {
+                    // AQUÍ GUARDAMOS LOS DATOS EN EL NAVEGADOR
+                    localStorage.setItem('usuarioLogueado', JSON.stringify({
+                        nombre: result.nombre,
+                        correo: datos.correo
+                    }));
+                    
+                    alert('¡Bienvenida, ' + (result.nombre || 'hermosa') + '!');
+                    window.location.href = 'agenda.html'; 
+                } else {
+                    alert('Correo o contraseña incorrectos. Intenta de nuevo.');
+                }
+            } catch (err) {
+                alert('Error de conexión con el servidor.');
+            }
+        });
+    </script>
+</body>
+</html>
