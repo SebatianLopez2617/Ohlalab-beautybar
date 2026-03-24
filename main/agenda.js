@@ -1,3 +1,5 @@
+// Validación de sesión de usuario.
+
 document.addEventListener('DOMContentLoaded', () => {
    
     const usuarioActivo = JSON.parse(localStorage.getItem('usuarioLogueado'));
@@ -7,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'inicio_de_secion.html'; // Ajusta el nombre si es necesario
         return;
     }
-
 
     document.getElementById('nombre').value = usuarioActivo.nombre || "";
 
