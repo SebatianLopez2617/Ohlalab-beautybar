@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Verificar si hay una sesión activa
+   
     const usuarioActivo = JSON.parse(localStorage.getItem('usuarioLogueado'));
 
     if (!usuarioActivo) {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Rellenar automáticamente el nombre del usuario si lo tenemos
+
     document.getElementById('nombre').value = usuarioActivo.nombre || "";
 
     const form = document.getElementById('form-agenda');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (result.success) {
                 alert("¡Cita agendada con éxito! Te esperamos. ✨");
                 form.reset();
-                // Opcional: mostrar la sección de "cita-confirmada"
+
             } else {
                 alert("Error: " + result.error);
             }
