@@ -9,7 +9,7 @@
 <body class="bg-login"> 
     <div class="overlay"></div> 
     <div class="main-wrapper">
-        <a href="index.html" class="btn-retorno">Volver al inicio</a>
+        <a href="main/index.html" class="btn-retorno">Volver al inicio</a>
 
         <div class="container">
             <div class="box login-box">
@@ -35,25 +35,20 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
     <script>
         // --- LÓGICA PARA REGISTRARSE ---
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // Mantenemos los IDs intactos para que tu HTML no sufra cambios
             const datos = {
                 nombre: document.getElementById('regNombre').value,
-                correo: document.getElementById('regCorreo').value,
+                correo: document.getElementById('regCorreo').value, // "correo" coincide con tu tabla D1
                 password: document.getElementById('regPass').value
             };
 
             try {
+                // Llamada a la Cloudflare Function en /functions/registro.js
                 const res = await fetch('/registro', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -61,22 +56,18 @@
                 });
 
                 const result = await res.json();
+                
                 if (result.success) {
                     alert('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.');
                     document.getElementById('registerForm').reset();
                 } else {
+                    // Si la columna ya existe o hay error de D1, lo mostrará aquí
                     alert('Error: ' + (result.error || 'No se pudo crear la cuenta'));
                 }
             } catch (err) {
-                alert('Error de conexión con el servidor.');
+                alert('Error de conexión. Asegúrate de haber publicado los cambios en Cloudflare.');
             }
         });
-
-
-
-
-
-
 
         // --- LÓGICA PARA INICIAR SESIÓN ---
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
@@ -88,16 +79,18 @@
             };
 
             try {
+                // Llamada a la Cloudflare Function en /functions/login.js
                 const res = await fetch('/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos)
                 });
 
-                const result = await res.json();
-                
-                if (result.success) {
-                    // AQUÍ GUARDAMOS LOS DATOS EN EL NAVEGADOR
+                // Si el status es 200 (OK), el login fue exitoso
+                if (res.ok) {
+                    const result = await res.json();
+                    
+                    // Guardamos sesión local para usarla en agenda.html
                     localStorage.setItem('usuarioLogueado', JSON.stringify({
                         nombre: result.nombre,
                         correo: datos.correo
@@ -109,7 +102,7 @@
                     alert('Correo o contraseña incorrectos. Intenta de nuevo.');
                 }
             } catch (err) {
-                alert('Error de conexión con el servidor.');
+                alert('Error al conectar con el servidor de autenticación.');
             }
         });
     </script>
