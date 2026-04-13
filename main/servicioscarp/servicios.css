@@ -115,8 +115,8 @@ body {
 /* Contenedor de Imagen Vertical */
 .service-image {
     width: 100%;
-    max-width: 260px; /* Forzamos ancho para que se vea vertical */
-    height: 350px;    /* Altura tipo retrato */
+    max-width: 260px;
+    height: 350px;
     overflow: hidden;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -171,14 +171,14 @@ body {
     text-decoration: none;
     display: inline-block;
     transition: var(--transition);
-    box-shadow: 0 4px 15px var(--shadow); /* Sombra fucsia suave */
+    box-shadow: 0 4px 15px var(--shadow);
 }
 
 .btn-registro:hover {
     background: var(--fucsia) !important;
     color: #ffffff !important;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(238, 91, 155, 0.5); /* Sombra fucsia intensa */
+    box-shadow: 0 8px 25px rgba(238, 91, 155, 0.5);
 }
 
 /* Sección de Asesoría al final */
@@ -225,7 +225,7 @@ body {
 @media (max-width: 768px) {
     .hero-text h2 { font-size: 2rem; }
     .secondary-sections { grid-template-columns: 1fr; }
-    .service-image { max-width: 100%; height: 400px; } /* En móvil se agranda */
+    .service-image { max-width: 100%; height: 400px; }
 }
 
 /* --- ESTILO DE FOOTER Y ENLACES LEGALES --- */
@@ -249,17 +249,10 @@ body {
     margin-bottom: 15px;
 }
 
-/* Contenedor de los enlaces de texto */
-.social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espacio entre Privacidad y Términos */
-}
-
+/* Enlaces de texto con línea animada */
 .social-links a {
     text-decoration: none;
-    color: #777; /* Gris elegante */
+    color: #777;
     font-size: 0.85rem;
     font-weight: 500;
     transition: var(--transition);
@@ -267,13 +260,11 @@ body {
     padding: 4px 0;
 }
 
-/* Efecto Hover: Cambia a fucsia y sube un poco */
 .social-links a:hover {
     color: var(--fucsia);
     transform: translateY(-2px);
 }
 
-/* Línea animada fucsia debajo del texto */
 .social-links a::after {
     content: '';
     position: absolute;
@@ -286,10 +277,9 @@ body {
 }
 
 .social-links a:hover::after {
-    width: 100%; /* La línea se expande al pasar el mouse */
+    width: 100%;
 }
 
-/* Separador visual entre los dos enlaces */
 .social-links a:not(:last-child)::before {
     content: "";
     position: absolute;
@@ -298,70 +288,43 @@ body {
     transform: translateY(-50%);
     width: 1px;
     height: 12px;
-    background-color: #ddd; /* Línea divisoria vertical */
+    background-color: #ddd;
     pointer-events: none;
-}
-
-/* Ajuste para móviles */
-@media (max-width: 480px) {
-    .social-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .social-links a:not(:last-child)::before {
-        display: none; /* Quitamos el separador en vertical */
-    }
 }
 
 /* --- FOOTER COMPLETO: ICONOS + LINKS LEGALES --- */
 
-#main-footer {
-    background: #fff;
-    border-top: 1px solid var(--border-soft);
-    padding: 40px 20px;
-    text-align: center;
-}
-
-/* 1. Contenedor de Iconos (Redes Sociales) */
 .social-icons-container {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin-bottom: 25px; /* Espacio antes del copyright */
+    margin-bottom: 25px;
 }
 
 .icono {
-    width: 35px; /* Tamaño pequeño y estético */
+    width: 35px;
     height: 35px;
     object-fit: contain;
     transition: var(--transition);
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
 }
 
-.social-icons-container a:hover .icono {
+.social-links a:hover .icono {
     transform: translateY(-5px) scale(1.1);
-    /* Resplandor fucsia al pasar el mouse */
     filter: drop-shadow(0 5px 15px var(--fucsia)); 
 }
 
-/* 2. Texto de Copyright */
-.footer-content p {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 15px;
-}
-
-/* 3. Enlaces Legales (Privacidad y Términos) */
 .legal-links {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    margin-top: 15px;
 }
 
 .legal-links a {
     text-decoration: none;
-    color: #bbb; /* Más tenue que los iconos */
+    color: #bbb;
     font-size: 0.75rem;
     font-weight: 500;
     transition: var(--transition);
@@ -372,10 +335,32 @@ body {
     color: var(--fucsia);
 }
 
-/* Separador "|" entre Privacidad y Términos */
 .legal-links a:not(:last-child)::after {
     content: "|";
     margin-left: 15px;
     color: #eee;
     pointer-events: none;
 }
+
+@media (max-width: 480px) {
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .social-links a:not(:last-child)::before {
+        display: none;
+    }
+    .legal-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .legal-links a:not(:last-child)::after {
+        display: none;
+    }
+}
+
+
+
+
+
+

@@ -24,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- 3. ANIMACIONES DE ENTRADA --- */
+/* --- 3. ANIMACIONES --- */
 @keyframes fadeInLeft {
     from { opacity: 0; transform: translateX(-50px); }
     to { opacity: 1; transform: translateX(0); }
@@ -40,9 +40,20 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes scroll-announcement {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-carousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc((-300px - 20px) * 5)); }
+}
+
 .fade-in-left { animation: fadeInLeft 1.2s ease forwards; }
 .fade-in-right { animation: fadeInRight 1.2s ease forwards; }
-.reveal { animation: fadeInUp 1s ease forwards; }
+.reveal { opacity: 0; }
+.reveal.active { animation: fadeInUp 1s ease forwards; opacity: 1; }
 
 /* --- 4. HEADER Y NAVEGACIÓN --- */
 #main-header {
@@ -82,25 +93,27 @@ body {
 
 .nav-links a:hover { color: var(--fucsia); }
 
-/* --- 5. HERO SECTION (BIENVENIDA) --- */
+/* --- 5. HERO SECTION --- */
 .home-hero {
     width: 100%;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 60px 5%;
+    gap: 20px;
+    padding: 30px 5%;
+    min-height: 400px;
 }
 
-.hero-text { flex: 0 1 auto; max-width: 450px; }
-.hero-text h2 { font-size: 2.8rem; color: var(--fucsia); margin-bottom: 15px; line-height: 1.1; }
+.hero-text { flex: 0 1 auto; max-width: 450px; padding-right: 10px; }
+.hero-text h2 { font-size: 2.5rem; color: var(--fucsia); margin-bottom: 10px; line-height: 1.1; }
+.hero-text p { margin-bottom: 20px; }
 
-.hero-image-wrapper { flex: 0 1 auto; display: flex; align-items: center; gap: 20px; }
+.hero-image-wrapper { flex: 0 1 auto; display: flex; align-items: center; gap: 15px; }
 .hero-image img { 
-    width: 300px; 
+    width: 280px; 
     border-radius: 20px; 
-    box-shadow: 15px 15px 0px var(--fucsia-soft); 
+    box-shadow: 12px 12px 0px var(--fucsia-soft); 
 }
 
 .spa-brand-text {
@@ -109,13 +122,48 @@ body {
     padding-left: 15px;
 }
 
-/* --- 6. BARRA DE ANUNCIOS ANIMADA --- */
+/* --- 6. CARRUSEL DE TRABAJOS --- */
+.work-carousel {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.carousel-track {
+    display: flex;
+    width: calc((300px + 20px) * 10); 
+    animation: scroll-carousel 40s linear infinite;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.carousel-track img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.carousel-track img:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 12px 25px var(--shadow);
+    cursor: pointer;
+}
+
+.work-carousel:hover .carousel-track { animation-play-state: paused; }
+
+/* --- 7. BARRA DE ANUNCIOS --- */
 .announcement-bar {
     width: 100%;
     background: var(--fucsia);
     color: white;
     overflow: hidden;
-    padding: 12px 0;
+    padding: 8px 0;
     white-space: nowrap;
 }
 
@@ -132,12 +180,7 @@ body {
     text-transform: uppercase;
 }
 
-@keyframes scroll-announcement {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* --- 7. SECCIÓN HISTORIA (DEGRADADO BLANCO A FUCSIA) --- */
+/* --- 8. SECCIÓN HISTORIA --- */
 .nuestra-historia {
     width: 100%;
     background: linear-gradient(180deg, #ffffff 0%, var(--fucsia-soft) 100%);
@@ -164,7 +207,7 @@ body {
 
 .historia-text h2 { font-size: 2.6rem; color: #333; margin: 10px 0 20px; }
 
-/* --- 8. GRID DE SERVICIOS (CON IMAGEN VERTICAL Y MÁXIMO ESPACIO) --- */
+/* --- 9. GRID DE SERVICIOS --- */
 .secondary-sections {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
@@ -212,17 +255,7 @@ body {
 
 .content-section:hover .card-img { transform: scale(1.08); }
 
-.content-section h2 { color: var(--fucsia); font-size: 1.6rem; margin-bottom: 20px; }
-
-.content-section p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    max-width: 320px;
-}
-
-/* --- 9. BOTONES BLANCOS CON SOMBRA FUCSIA (ESTILO GLOW) --- */
+/* --- 10. BOTONES Y LINKS --- */
 .btn-registro, button, .card-link-bold {
     background: #ffffff !important;
     color: var(--fucsia) !important;
@@ -244,297 +277,134 @@ body {
     box-shadow: 0 8px 25px rgba(238, 91, 155, 0.5);
 }
 
-/* --- 10. FOOTER --- */
-#main-footer { background: #fff; border-top: 1px solid var(--border-soft); padding-top: 40px; }
-.footer-map { text-align: center; max-width: var(--max-width); margin: 0 auto 40px; padding: 0 20px; }
-.footer-map iframe { border-radius: 20px; }
-.footer-content { background: var(--fucsia-soft); padding: 40px; text-align: center; }
-
-/* --- 11. BANNERS (PRIVACIDAD Y COOKIES REESTABLECIDOS) --- */
-#privacy-banner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 30px;
-    width: 90%;
-    max-width: 420px;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    text-align: center;
-    z-index: 1000;
-}
-
-#cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: white;
-    padding: 15px;
-    border-top: 3px solid var(--fucsia);
-    text-align: center;
-    z-index: 999;
-}
-
-/* Estilo para el scroll de términos dentro del banner */
-.terminos-scroll {
-    max-height: 100px;
-    overflow-y: auto;
-    margin: 15px 0;
-    padding: 10px;
-    background: var(--fucsia-soft);
-    font-size: 0.85rem;
-    border-radius: 10px;
-}
-
-/* --- 12. RESPONSIVE --- */
-@media (max-width: 768px) {
-    .home-hero, .historia-container { flex-direction: column; text-align: center; }
-    .hero-text h2 { font-size: 2.2rem; }
-    .hero-image img, .historia-image img { width: 100%; height: auto; max-width: 350px; }
-    .secondary-sections { grid-template-columns: 1fr; }
-}
-
-
-/* --- 5. HERO SECTION (AJUSTADA: MÁS COMPACTA) --- */
-.home-hero {
-    width: 100%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px; /* REDUCIDO: Menos espacio entre texto e imagen */
-    padding: 30px 5%; /* REDUCIDO: De 60px a 30px para subir el contenido */
-    min-height: 400px; /* Asegura que no sea excesivamente alto */
-}
-
-.hero-text { 
-    flex: 0 1 auto; 
-    max-width: 450px; 
-    padding-right: 10px; 
-}
-
-.hero-text h2 { 
-    font-size: 2.5rem; /* Ligeramente más pequeño para ahorrar espacio */
-    color: var(--fucsia); 
-    margin-bottom: 10px; 
-    line-height: 1.1; 
-}
-
-.hero-text p {
-    margin-bottom: 20px; /* Espacio controlado bajo el párrafo */
-}
-
-.hero-image-wrapper { 
-    flex: 0 1 auto; 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; /* Espacio interno de la imagen y el texto lateral */
-}
-
-.hero-image img { 
-    width: 280px; /* Un poco más pequeña para que todo suba */
-    border-radius: 20px; 
-    box-shadow: 12px 12px 0px var(--fucsia-soft); 
-}
-
-/* --- AJUSTE EXTRA: BARRA DE ANUNCIOS --- */
-.announcement-bar {
-    /* Si quieres reducir el espacio global, bajamos un poco el padding aquí también */
-    padding: 8px 0; 
-}
-
-/* --- NUEVO: CARRUSEL HORIZONTAL MÁS GRANDE --- */
-.work-carousel {
-    width: 100%;
-    overflow: hidden;
-    background: #fff;
-    padding: 40px 0; /* Más espacio arriba y abajo */
-    border-top: 1px solid var(--border-soft);
-    border-bottom: 1px solid var(--border-soft);
-}
-
-.carousel-track {
-    display: flex;
-    /* El ancho debe ser suficiente para todas las fotos (Ancho foto + Gap) */
-    width: calc((300px + 20px) * 10); 
-    animation: scroll-carousel 40s linear infinite;
-    gap: 20px; /* Más espacio entre fotos */
-    padding-left: 20px;
-}
-
-.carousel-track img {
-    width: 300px; /* Aumentado de 180px a 300px */
-    height: 200px; /* Aumentado de 120px a 200px */
-    object-fit: cover;
-    border-radius: 20px; /* Bordes más curvos y modernos */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    transition: var(--transition);
-}
-
-.carousel-track img:hover {
-    transform: scale(1.05) translateY(-5px); /* Se agranda y sube un poco */
-    box-shadow: 0 12px 25px var(--shadow); /* Sombra fucsia al pasar el mouse */
-    cursor: pointer;
-}
-
-@keyframes scroll-carousel {
-    0% { transform: translateX(0); }
-    100% { 
-        /* Se desplaza exactamente la mitad del ancho total del track */
-        transform: translateX(calc((-300px - 20px) * 5)); 
-    }
-}
-
-/* Pausar al pasar el ratón para que el cliente pueda ver bien la foto */
-.work-carousel:hover .carousel-track {
-    animation-play-state: paused;
-}
-
-
-/* --- 9. FOOTER CON MAPA E ICONOS --- */
-#main-footer {
+/* --- 11. FOOTER REUTILIZABLE (.footer-reusable) --- */
+.footer-reusable {
     background: #fff;
     border-top: 1px solid var(--border-soft);
     padding-top: 50px;
+    width: 100%;
 }
 
-.footer-map {
+.footer-reusable .footer-map {
     max-width: var(--max-width);
     margin: 0 auto 40px;
     padding: 0 20px;
     text-align: center;
 }
 
-.footer-map h3 { 
+.footer-reusable .footer-map h3 { 
     color: var(--fucsia); 
     font-size: 1.8rem;
     margin-bottom: 5px; 
 }
 
-.footer-map p {
+.footer-reusable .footer-map p {
     color: #666;
     margin-bottom: 20px;
     font-weight: 500;
 }
 
-.footer-map iframe { 
+.footer-reusable .footer-map iframe { 
     border-radius: 25px; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: var(--transition);
 }
 
-.footer-map iframe:hover {
-    box-shadow: 0 15px 40px var(--shadow); /* Sombra fucsia suave al interactuar */
-}
-
-/* Contenido inferior (Copyright y Redes) */
-.footer-content {
+.footer-reusable .footer-content {
     background: var(--fucsia-soft);
     padding: 40px 20px;
     text-align: center;
     border-top: 1px solid var(--border-soft);
 }
 
-.footer-content p {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 25px;
-}
-
-/* --- ESTILO DE ICONOS SOCIALES --- */
+/* Iconos Sociales Reutilizables */
 .social-links { 
     display: flex; 
     justify-content: center; 
     gap: 25px; 
-}
-
-.social-links a {
-    display: inline-block;
-    transition: var(--transition);
+    margin-bottom: 20px;
 }
 
 .icono {
-    width: 35px; /* Tamaño ideal para iconos */
-    height: 35px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     transition: var(--transition);
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .social-links a:hover .icono {
-    transform: translateY(-5px) scale(1.1);
-    /* Crea un resplandor fucsia detrás del icono */
-    filter: drop-shadow(0 5px 15px var(--fucsia)); 
+    transform: translateY(-5px);
+    filter: drop-shadow(0 5px 10px var(--fucsia));
 }
 
-/* Ajuste para móviles */
-@media (max-width: 768px) {
-    .footer-map iframe {
-        height: 200px;
-    }
-    .footer-content {
-        padding: 30px 15px;
-    }
+/* Links Legales (Privacidad/Términos) */
+.links-legales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.icono {
-    width: 32px;            /* Tamaño pequeño y elegante */
-    height: 32px;
-    object-fit: contain;    /* Evita que el icono se deforme */
+.links-legales a {
+    text-decoration: none;
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: 500;
     transition: var(--transition);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    position: relative;
+    padding: 5px 10px;
 }
 
-.social-links a:hover .icono {
-    transform: translateY(-5px); /* Pequeño salto hacia arriba */
-    filter: drop-shadow(0 5px 10px var(--fucsia)); /* Resplandor fucsia */
+.links-legales a:hover { color: var(--fucsia); transform: translateY(-2px); }
+
+.links-legales a::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 1.5px; bottom: 0; left: 50%;
+    background-color: var(--fucsia);
+    transition: var(--transition);
+    transform: translateX(-50%);
 }
 
-/* --- 11. BANNERS (PRIVACIDAD Y COOKIES REESTABLECIDOS) --- */
-#privacy-banner {
+.links-legales a:hover::after { width: 80%; }
+
+/* --- 12. COOKIE BANNER REUTILIZABLE (.cookie-reusable) --- */
+.cookie-reusable {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 25px;
-    box-shadow: 0 20px 80px rgba(0,0,0,0.3); /* Sombra fuerte para resaltar */
-    text-align: center;
-    z-index: 2000; /* Super alto para que no lo tape nada */
-    border: 2px solid var(--fucsia);
-    display: block; /* Asegura que se vea */
-}
-
-#cookie-banner {
-    position: fixed;
-    bottom: 20px; /* Un poco separado del borde inferior */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 600px;
     background: #ffffff;
     padding: 15px 25px;
-    border-radius: 50px; /* Estilo píldora */
+    border-radius: 50px;
     border: 1px solid var(--fucsia);
-    display: flex; /* Para alinear texto y botón */
+    display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     z-index: 1999;
 }
 
-#cookie-banner p {
-    font-size: 0.9rem;
-    margin: 0;
+.cookie-reusable p { font-size: 0.9rem; margin: 0; color: #444; }
+
+/* --- 13. PRIVACY BANNER (MODAL CENTRAL) --- */
+#privacy-banner {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 2000;
+    border: 2px solid var(--fucsia);
 }
 
-/* Estilo para el área de texto legal dentro del banner */
 .terminos-scroll {
     max-height: 120px;
     overflow-y: auto;
@@ -547,53 +417,11 @@ body {
     color: #666;
 }
 
-/* --- ESTILO PARA ENLACES DE PRIVACIDAD Y TÉRMINOS (FOOTER) --- */
-.social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espacio entre los dos enlaces */
-    margin-top: 15px;
-}
-
-.social-links a {
-    text-decoration: none;
-    color: #888; /* Gris suave para que sea discreto */
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: var(--transition);
-    position: relative;
-    padding: 5px 10px;
-}
-
-/* Efecto al pasar el mouse */
-.social-links a:hover {
-    color: var(--fucsia); /* Cambia a fucsia */
-    transform: translateY(-2px); /* Pequeño salto hacia arriba */
-}
-
-/* Añade una línea pequeña debajo al hacer hover */
-.social-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1.5px;
-    bottom: 0;
-    left: 50%;
-    background-color: var(--fucsia);
-    transition: var(--transition);
-    transform: translateX(-50%);
-}
-
-.social-links a:hover::after {
-    width: 80%; /* La línea crece al pasar el mouse */
-}
-
-/* Opcional: Añadir un separador visual entre los dos */
-.social-links a:not(:last-child)::before {
-    content: '|';
-    position: absolute;
-    right: -12px;
-    color: #ddd;
-    pointer-events: none;
+/* --- 14. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .home-hero, .historia-container { flex-direction: column; text-align: center; }
+    .hero-text h2 { font-size: 2.2rem; }
+    .hero-image img, .historia-image img { width: 100%; height: auto; max-width: 350px; }
+    .secondary-sections { grid-template-columns: 1fr; }
+    .cookie-reusable { flex-direction: column; gap: 10px; border-radius: 20px; text-align: center; }
 }
