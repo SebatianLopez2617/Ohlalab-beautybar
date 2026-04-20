@@ -1,12 +1,12 @@
 // Validación de sesión de usuario.
-
+// Si no hay usuario activo, redirige al inicio de sesión.
 document.addEventListener('DOMContentLoaded', () => {
    
     const usuarioActivo = JSON.parse(localStorage.getItem('usuarioLogueado'));
 
     if (!usuarioActivo) {
         alert("Debes iniciar sesión para agendar una cita.");
-        window.location.href = 'inicio_de_secion.html'; // Ajusta el nombre si es necesario
+        window.location.href = '../inicio_de_secion.html';
         return;
     }
 
@@ -48,3 +48,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
