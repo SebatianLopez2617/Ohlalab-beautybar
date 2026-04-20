@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipo - Ohlalab BeautyBar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lipo.css">
+        <link rel="stylesheet" href="animacion.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <nav class="navbar">
+            <div class="header-logo">
+                <a href="../../index.html">
+                    <img src="../../Fotos/logo2.png" alt="Ohlalab BeautyBar Logo" class="brand-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../servicios.html">Servicios</a></li>
+                <li><a href="../../agenda/agenda.html" class="btn-registro">Agendar Cita</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="service-hero">
+            <span class="hero-eyebrow">Tratamiento Corporal</span>
+            <h1>Lipo <em>Modelado</em></h1>
+            <p>Tratamientos corporales reductores y de modelado para lucir una figura más estilizada, firme y definida.</p>
+            <div class="hero-divider"></div>
+        </section>
+
+        <!-- CAROUSEL PRINCIPAL -->
+        <div class="gallery-section">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="../../lipo/lipo.jpeg" alt="Lipo 1"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo2.jpeg" alt="Lipo 2"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo3.jpeg" alt="Lipo 3"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo4.jpeg" alt="Lipo 4"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo5.jpeg" alt="Lipo 5"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo6.jpeg" alt="Lipo 6"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo7.jpeg" alt="Lipo 7"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo8.jpeg" alt="Lipo 8"></div>
+                    <div class="carousel-slide"><img src="../../lipo/lipo10.jpeg" alt="Lipo 9"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="carousel-counter" id="carouselCounter">1 / 9</div>
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnails-grid" id="thumbnailsGrid">
+            <div class="thumb active" onclick="goToSlide(0)"><img src="../../lipo/lipo.jpeg" alt="Lipo 1"></div>
+            <div class="thumb" onclick="goToSlide(1)"><img src="../../lipo/lipo2.jpeg" alt="Lipo 2"></div>
+            <div class="thumb" onclick="goToSlide(2)"><img src="../../lipo/lipo3.jpeg" alt="Lipo 3"></div>
+            <div class="thumb" onclick="goToSlide(3)"><img src="../../lipo/lipo4.jpeg" alt="Lipo 4"></div>
+            <div class="thumb" onclick="goToSlide(4)"><img src="../../lipo/lipo5.jpeg" alt="Lipo 5"></div>
+            <div class="thumb" onclick="goToSlide(5)"><img src="../../lipo/lipo6.jpeg" alt="Lipo 6"></div>
+            <div class="thumb" onclick="goToSlide(6)"><img src="../../lipo/lipo7.jpeg" alt="Lipo 7"></div>
+            <div class="thumb" onclick="goToSlide(7)"><img src="../../lipo/lipo8.jpeg" alt="Lipo 8"></div>
+            <div class="thumb" onclick="goToSlide(8)"><img src="../../lipo/lipo10.jpeg" alt="Lipo 9"></div>
+        </div>
+
+        <section class="cta-bottom">
+            <p>¿Te gustaría este tratamiento?</p>
+            <a href="../../agenda/agenda.html" class="btn-registro">Agendar Cita</a>
+        </section>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+        <button class="lightbox-nav prev" onclick="lightboxNav(-1)">&#8592;</button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav next" onclick="lightboxNav(1)">&#8594;</button>
+    </div>
+
+    <footer class="footer-reusable">
+        <div class="footer-map">
+            <h3>Visítanos</h3>
+            <p>Tizara Tizayuca</p>
+            <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="footer-content">
+            <p>© 2026 Ohlalab BeautyBar. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18fzqoqS6F/"><img src="../../iconos/iconFC.PNG" alt="Facebook" class="icono"></a>
+                <a href="https://www.instagram.com/ohlalabsalon?igsh=MWxhczE5dmtveTdiZA=="><img src="../../iconos/IGN.png" alt="Instagram" class="icono"></a>
+                <a href="https://api.whatsapp.com/send?phone=5215526960091"><img src="../../iconos/WP.png" alt="WhatsApp" class="icono"></a>
+            </div>
+            <div class="links-legales">
+                <a href="../../Avisos_de_privacidad.pdf">Privacidad</a>
+                <a href="../../Términos_y_condiciones.pdf">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const images = [
+            '../../lipo/lipo.jpeg',
+            '../../lipo/lipo2.jpeg',
+            '../../lipo/lipo3.jpeg',
+            '../../lipo/lipo4.jpeg',
+            '../../lipo/lipo5.jpeg',
+            '../../lipo/lipo6.jpeg',
+            '../../lipo/lipo7.jpeg',
+            '../../lipo/lipo8.jpeg',
+            '../../lipo/lipo10.jpeg',
+        ];
+
+        let current = 0;
+        let autoTimer;
+
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        const counter = document.getElementById('carouselCounter');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        images.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${current * 100}%)`;
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+            thumbs.forEach((t, i) => t.classList.toggle('active', i === current));
+            counter.textContent = `${current + 1} / ${images.length}`;
+        }
+
+        function moveCarousel(dir) {
+            current = (current + dir + images.length) % images.length;
+            updateCarousel();
+            resetAuto();
+        }
+
+        function goToSlide(idx) {
+            current = idx;
+            updateCarousel();
+            resetAuto();
+        }
+
+        function resetAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => moveCarousel(1), 4000);
+        }
+
+        document.getElementById('carouselTrack').addEventListener('click', () => openLightbox(current));
+        thumbs.forEach((t, i) => t.addEventListener('dblclick', () => openLightbox(i)));
+
+        function openLightbox(idx) {
+            current = idx;
+            document.getElementById('lightboxImg').src = images[idx];
+            document.getElementById('lightbox').classList.add('open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        function lightboxNav(dir) {
+            current = (current + dir + images.length) % images.length;
+            document.getElementById('lightboxImg').src = images[current];
+            updateCarousel();
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lightboxNav(1);
+            if (e.key === 'ArrowLeft') lightboxNav(-1);
+        });
+
+        autoTimer = setInterval(() => moveCarousel(1), 4000);
+    </script>
+
+</body>
+</html>

@@ -17,7 +17,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
     background-color: #fdfdfd;
     color: #444;
     line-height: 1.6;
@@ -62,65 +62,101 @@ body {
 
 .nav-links a:hover { color: var(--fucsia); }
 
-/* --- 4. HERO SECTION (TÍTULO DE CATÁLOGO) --- */
+/* --- 4. HERO SECTION --- */
 .home-hero {
     width: 100%;
     background: #fff;
-    padding: 40px 20px;
+    padding: 60px 20px 40px;
     text-align: center;
+    position: relative;
+}
+
+/* Pequeño label encima del título */
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    background: var(--fucsia-soft);
+    border: 1px solid var(--border-soft);
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
 }
 
 .hero-text h2 {
-    font-size: 2.8rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+    line-height: 1.15;
+}
+
+/* La palabra "Belleza" en fucsia automáticamente via CSS */
+.hero-text h2 em {
+    font-style: italic;
     color: var(--fucsia);
-    margin-bottom: 10px;
 }
 
 .hero-text p {
-    max-width: 600px;
+    max-width: 560px;
     margin: 0 auto;
-    color: #666;
+    color: #888;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
-/* --- 5. CUADRÍCULA DE SERVICIOS (MENOS MARGEN Y MÁS ANCHA) --- */
+/* Línea decorativa bajo el hero */
+.hero-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fucsia), var(--fucsia-soft));
+    border-radius: 2px;
+    margin: 28px auto 0;
+}
+
+/* --- 5. CUADRÍCULA DE SERVICIOS --- */
 .secondary-sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
     width: 100%;
     max-width: var(--max-width);
-    margin: 20px auto;
-    padding: 0 15px;
+    margin: 30px auto 10px;
+    padding: 0 20px;
 }
 
-/* --- 6. TARJETAS DE SERVICIO (VERTICALES) --- */
+/* --- 6. TARJETAS DE SERVICIO --- */
 .content-section {
     background: #fff;
-    padding: 30px 20px;
-    border-radius: 25px;
+    border-radius: 20px;
     border: 1px solid var(--border-soft);
-    text-align: center;
+    overflow: hidden;
+    text-align: left;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
 }
 
 .content-section:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px var(--shadow);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow);
     border-color: var(--fucsia);
 }
 
-/* Contenedor de Imagen Vertical */
+/* Contenedor de imagen: con margen y bordes redondeados */
 .service-image {
-    width: 100%;
-    max-width: 260px;
-    height: 350px;
+    width: calc(100% - 20px);
+    height: 240px;
     overflow: hidden;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    margin: 10px 10px 0;
+    border-radius: 14px;
 }
 
 .service-image img {
@@ -128,38 +164,64 @@ body {
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
+    display: block;
 }
 
 .content-section:hover .service-image img {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
-.content-section h2 {
-    color: var(--fucsia);
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-}
-
-.content-section p {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 20px;
+/* Bloque de texto dentro de la tarjeta */
+.card-body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
 }
 
-/* Etiqueta de Precio */
-.price-tag {
-    display: inline-block;
-    background: var(--fucsia-soft);
-    color: var(--fucsia);
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1rem;
-    border: 1px solid var(--border-soft);
+.content-section h2 {
+    color: #1a1a1a;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
 }
 
-/* --- 7. BOTONES (ESTILO BLANCO CON SOMBRA FUCSIA) --- */
+.content-section p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    font-weight: 300;
+    line-height: 1.65;
+}
+
+/* Botón "Ver más" centrado */
+.price-tag {
+    display: block;
+    text-align: center;
+    align-self: stretch;
+    background: var(--fucsia-soft);
+    color: var(--fucsia);
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    border: 1px solid var(--border-soft);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.price-tag:hover {
+    background: var(--fucsia);
+    color: #fff;
+    border-color: var(--fucsia);
+}
+
+/* --- 7. BOTONES --- */
 .btn-registro {
     background: #ffffff !important;
     color: var(--fucsia) !important;
@@ -181,19 +243,22 @@ body {
     box-shadow: 0 8px 25px rgba(238, 91, 155, 0.5);
 }
 
-/* Sección de Asesoría al final */
+/* --- Sección CTA al final --- */
 .cta-bottom {
-    padding: 60px 20px;
+    padding: 70px 20px;
     text-align: center;
     background: var(--fucsia-soft);
     width: 100%;
-    margin-top: 40px;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-soft);
 }
 
 .cta-bottom p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1.25rem;
+    margin-bottom: 22px;
     color: #333;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
 }
 
 /* --- 8. FOOTER --- */
@@ -201,6 +266,35 @@ body {
     background: #fff;
     padding: 40px 20px;
     text-align: center;
+}
+
+.footer-reusable {
+    background: #fff;
+    border-top: 1px solid var(--border-soft);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-map {
+    max-width: var(--max-width);
+    margin: 0 auto 30px;
+}
+
+.footer-map h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--fucsia);
+    margin-bottom: 6px;
+}
+
+.footer-map p {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.footer-map iframe {
+    border-radius: 14px;
+    overflow: hidden;
 }
 
 .social-links {
@@ -221,77 +315,6 @@ body {
     color: var(--fucsia);
 }
 
-/* --- 9. RESPONSIVE --- */
-@media (max-width: 768px) {
-    .hero-text h2 { font-size: 2rem; }
-    .secondary-sections { grid-template-columns: 1fr; }
-    .service-image { max-width: 100%; height: 400px; }
-}
-
-/* --- ESTILO DE FOOTER Y ENLACES LEGALES --- */
-
-#main-footer {
-    background-color: #ffffff;
-    border-top: 1px solid var(--border-soft);
-    padding: 40px 20px;
-    text-align: center;
-    width: 100%;
-}
-
-.footer-content {
-    max-width: var(--max-width);
-    margin: 0 auto;
-}
-
-.footer-content p {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 15px;
-}
-
-/* Enlaces de texto con línea animada */
-.social-links a {
-    text-decoration: none;
-    color: #777;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: var(--transition);
-    position: relative;
-    padding: 4px 0;
-}
-
-.social-links a:hover {
-    color: var(--fucsia);
-    transform: translateY(-2px);
-}
-
-.social-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1.5px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--fucsia);
-    transition: var(--transition);
-}
-
-.social-links a:hover::after {
-    width: 100%;
-}
-
-.social-links a:not(:last-child)::before {
-    content: "";
-    position: absolute;
-    right: -12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 12px;
-    background-color: #ddd;
-    pointer-events: none;
-}
-
 /* --- FOOTER COMPLETO: ICONOS + LINKS LEGALES --- */
 
 .social-icons-container {
@@ -302,8 +325,11 @@ body {
 }
 
 .icono {
-    width: 35px;
-    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 36px;
+    max-height: 36px
+    ;
     object-fit: contain;
     transition: var(--transition);
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
@@ -311,10 +337,16 @@ body {
 
 .social-links a:hover .icono {
     transform: translateY(-5px) scale(1.1);
-    filter: drop-shadow(0 5px 15px var(--fucsia)); 
+    filter: drop-shadow(0 5px 15px var(--fucsia));
 }
 
-.legal-links {
+.footer-content p {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-bottom: 14px;
+}
+
+.links-legales {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,45 +354,42 @@ body {
     margin-top: 15px;
 }
 
-.legal-links a {
+.links-legales a {
     text-decoration: none;
     color: #bbb;
     font-size: 0.75rem;
     font-weight: 500;
     transition: var(--transition);
-    position: relative;
 }
 
-.legal-links a:hover {
+.links-legales a:hover {
     color: var(--fucsia);
 }
 
-.legal-links a:not(:last-child)::after {
+.links-legales a:not(:last-child)::after {
     content: "|";
     margin-left: 15px;
     color: #eee;
     pointer-events: none;
 }
 
+/* --- 9. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero-text h2 { font-size: 2.4rem; }
+    .secondary-sections {
+        grid-template-columns: 1fr;
+        padding: 0 14px;
+    }
+    .service-image { height: 220px; }
+    .card-body { padding: 18px 18px 22px; }
+}
+
 @media (max-width: 480px) {
-    .social-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .social-links a:not(:last-child)::before {
-        display: none;
-    }
-    .legal-links {
+    .hero-text h2 { font-size: 2rem; }
+    .social-links { flex-direction: row; flex-wrap: wrap; }
+    .links-legales {
         flex-direction: column;
         gap: 8px;
     }
-    .legal-links a:not(:last-child)::after {
-        display: none;
-    }
+    .links-legales a:not(:last-child)::after { display: none; }
 }
-
-
-
-
-
-
