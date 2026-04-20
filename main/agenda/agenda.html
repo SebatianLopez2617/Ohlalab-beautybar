@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Cita - Ohlalab BeautyBar</title>
+    <title>Nueva Cita | Ohlalab BeautyBar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="agenda2.css">
 </head>
 <body>
@@ -11,100 +12,88 @@
     <header id="main-header">
         <nav class="navbar">
             <div class="header-logo">
-                <a href="..\index.html">
-                    <img src="..\Fotos/logo2.png" alt="Ohlalab BeautyBar Logo" class="brand-logo">
+                <a href="index.html">
+                    <img src="../Fotos/logo2.png" alt="Ohlalab BeautyBar Logo" class="brand-logo">
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="../servicios.html">Servicios</a></li>
+                <li><a href="../servicioscarp/servicios.html">Servicios</a></li>
                 <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../usuario/inicio_de_secion.html" class="nav-login-btn">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
 
-    
-
-    <main class="main-container">
-        <section class="agenda-container">
-            <div id="contenedor-formulario">
-                <h1>Agenda tu Cita</h1>
-                <p>Completa el formulario para reservar tu espacio de belleza.</p>
-
-                <form id="form-agenda" class="form-grid">
-                    <div class="form-group">
-                        <label for="nombre">Nombre Completo:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefono">Teléfono / WhatsApp:</label>
-                        <input type="tel" id="telefono" name="telefono" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="servicio">Servicio:</label>
-                        <select id="servicio" name="servicio" required>
-                            <option value="">Selecciona uno...</option>
-                            <option value="Manicura">Manicura</option>
-                            <option value="Pedicura">Pedicura</option>
-                            <option value="Limpieza Facial">Limpieza Facial</option>
-                            <option value="Pestañas">Pestañas</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fecha">Fecha preferida:</label>
-                        <input type="date" id="fecha" name="fecha" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input type="time" id="hora" name="hora" required>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="comentarios">Notas adicionales:</label>
-                        <textarea id="comentarios" name="comentarios" rows="3"></textarea>
-                    </div>
-
-                    <button type="submit" id="btn-agendar">Confirmar y Agendar</button>
-                </form>
-            </div>
-
-            <div id="cita-confirmada" class="content-section" style="display: none;">
-                <h2>¡Tienes una cita activa! ✨</h2>
-                <div id="datos-reserva" style="margin: 20px 0; text-align: left; background: var(--fucsia-soft); padding: 20px; border-radius: 15px;">
-                </div>
-                <button onclick="cancelarCita()" style="background: #666 !important;">Cancelar Cita Actual</button>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-reusable">
-        <div class="footer-map">
-            <h3>Visítanos</h3>
-            <p>Tizara Tizayuca</p>
-            <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <div class="footer-content">
-            <p>© 2026 Ohlalab BeautyBar. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/share/18fzqoqS6F/"><img src="../iconos/iconFC.PNG" alt="Facebook" class="icono"></a>
-                <a href="https://www.instagram.com/ohlalabsalon?igsh=MWxhczE5dmtveTdiZA=="><img src="../iconos/IGN.png" alt="Instagram" class="icono"></a>
-                <a href="https://api.whatsapp.com/send?phone=5215526960091..."><img src="../iconos/WP.png" alt="WhatsApp" class="icono"></a>
-            </div>
-            <div class="links-legales">
-                <a href="Avisos_de_privacidad.pdf">Privacidad</a>
-                <a href="Términos_y_condiciones.pdf">Términos</a>
-            </div>
-        </div>
-    </footer>
-
-    <div id="cookie-banner" class="cookie-reusable">
-        <p>Usamos cookies 🍪 para mejorar tu experiencia. ✨</p>
-        <button onclick="document.getElementById('cookie-banner').style.display='none'">Aceptar</button>
+    <div class="hero-strip">
+        <h1>Ohlalab BeautyBar</h1>
+        <p>Reserva tu momento de belleza</p>
     </div>
 
+    <div class="main-wrap">
+        <div class="card">
+            <h2 class="card-title">Agenda tu cita</h2>
+            <p class="card-subtitle">Completa los campos para continuar</p>
+
+            <form id="registro-cita" class="form-grid">
+                
+                <div class="form-group full">
+                    <label for="nombre">Nombre Completo <span class="req">*</span></label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre completo">
+                </div>
+
+                <div class="form-group full">
+                    <label for="correo">Correo Electrónico (Requiere de una cuenta creada) <span class="req">*</span></label>
+                    <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com">
+                </div>
+
+                <div class="form-group full">
+                    <label>Servicios Disponibles <span class="req">*</span></label>
+                    <div class="servicios-grid">
+                        <label class="chip-label"><input type="radio" name="servicio" value="alaciado" required><span>Alaciado</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="cejas"><span>Cejas</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="labios"><span>Labios</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="pestanas"><span>Pestañas</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="lipo"><span>Lipo</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="maquillaje"><span>Maquillaje</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="uñas_pie"><span>Uñas Pie</span></label>
+                        <label class="chip-label"><input type="radio" name="servicio" value="uñas_mano"><span>Uñas Mano</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha (2026) <span class="req">*</span></label>
+                    <input type="date" id="fecha" name="fecha" min="2026-01-01" max="2026-12-31" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hora">Hora (10:00 - 20:00) <span class="req">*</span></label>
+                    <input type="time" id="hora" name="hora" min="10:00" max="20:00" required>
+                </div>
+
+                <div class="form-group full">
+                    <label for="notas">Notas requeridas <span class="req">*</span></label>
+                    <textarea id="notas" name="notas" required placeholder="Escribe aquí tus notas..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Confirmar Cita</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Ohlalab BeautyBar</h3>
+                <p>Tizayuca, Hidalgo.</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/18fzqoqS6F/"><img src="../iconos/iconFC.PNG" alt="FB"></a>
+                <a href="https://www.instagram.com/ohlalabsalon?igsh=MWxhczE5dmtveTdiZA=="><img src="../iconos/IGN.png" alt="IG"></a>
+                <a href="https://api.whatsapp.com/send?phone=5215526960091"><img src="../iconos/WP.png" alt="WA"></a>
+            </div>
+            <p class="copyright">© 2026 Todos los derechos reservados</p>
+        </div>
+    </footer>
 
 </body>
 </html>
