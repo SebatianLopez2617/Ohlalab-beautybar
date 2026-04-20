@@ -14,7 +14,7 @@
 /* --- FONDO CON IMAGEN --- */
 body.bg-login {
     font-family: 'Segoe UI', sans-serif;
-    background-image: url('Fotos/background.jpeg'); /* Tu imagen */
+    background-image: url('../Fotos/background.jpeg'); /* Tu imagen */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* La imagen no se mueve */
