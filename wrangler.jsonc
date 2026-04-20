@@ -1,0 +1,13 @@
+
+{
+  "name": "ohlalab",
+  "compatibility_date": "2026-04-20",
+  "pages_build_output_dir": "main",
+  "d1_databases": [
+    {
+      "binding": "DB", 
+      "database_name": "ohlalabspa",
+      "database_id": "213b4137-2844-4aa1-922a-4118185dbb49" 
+    }
+  ]
+}
