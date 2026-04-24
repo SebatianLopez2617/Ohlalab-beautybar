@@ -542,4 +542,45 @@ body {
     .nav-links a {
         font-size: 0.82rem;
     }
+}/* --- NAVBAR MÓVIL --- */
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 14px;
+    }
+
+    .brand-logo {
+        height: 50px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .btn-registro {
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .btn-registro {
+        padding: 7px 12px !important;
+        font-size: 0.78rem !important;
+    }
 }
