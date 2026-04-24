@@ -543,44 +543,52 @@ body {
         font-size: 0.82rem;
     }
 }/* --- NAVBAR MÓVIL --- */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .navbar {
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 10px 14px;
+        padding: 8px 14px;
     }
 
     .brand-logo {
-        height: 50px;
+        height: 52px;
     }
 
     .nav-links {
-        gap: 10px;
+        gap: 6px;
     }
 
     .nav-links a {
-        font-size: 0.8rem;
-    }
-
-    .btn-registro {
-        padding: 8px 16px !important;
-        font-size: 0.8rem !important;
-    }
-}
-
-@media (max-width: 380px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .nav-links {
-        width: 100%;
-        justify-content: space-between;
+        font-size: 0.78rem;
+        padding: 6px 10px;
     }
 
     .btn-registro {
         padding: 7px 12px !important;
         font-size: 0.78rem !important;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .brand-logo {
+        height: 48px;
+    }
+
+    .btn-registro {
+        padding: 8px 18px !important;
+        font-size: 0.82rem !important;
+        white-space: nowrap;
     }
 }
