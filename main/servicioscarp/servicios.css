@@ -393,3 +393,153 @@ body {
     }
     .links-legales a:not(:last-child)::after { display: none; }
 }
+
+/* --- 10. RESPONSIVE (basado en avisos.css) --- */
+
+/* Tablet */
+@media (max-width: 960px) {
+    .secondary-sections {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .home-hero {
+        padding: 48px 20px 36px;
+    }
+
+    .hero-text h2 {
+        font-size: 2.8rem;
+    }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    /* Hero */
+    .home-hero {
+        padding: 40px 16px 32px;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        padding: 4px 13px;
+    }
+
+    .hero-text p {
+        font-size: 0.95rem;
+        padding: 0 6px;
+    }
+
+    .hero-divider {
+        margin-top: 20px;
+    }
+
+    /* Servicios */
+    .secondary-sections {
+        grid-template-columns: 1fr;
+        padding: 0 14px;
+        gap: 16px;
+        margin: 24px auto 32px;
+    }
+
+    .content-section {
+        border-radius: 16px;
+    }
+
+    .service-image {
+        height: 200px;
+        margin: 8px 8px 0;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 16px 16px 20px;
+    }
+
+    .content-section h2 {
+        font-size: 1.15rem;
+    }
+
+    /* CTA */
+    .cta-bottom {
+        padding: 50px 16px;
+        margin-top: 30px;
+    }
+
+    .cta-bottom p {
+        font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer-map iframe {
+        height: 260px;
+    }
+
+    .links-legales {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .links-legales a:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    .home-hero {
+        padding: 30px 14px 26px;
+    }
+
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+
+    .hero-text p {
+        font-size: 0.88rem;
+    }
+
+    .service-image {
+        height: 180px;
+    }
+
+    .card-body {
+        padding: 14px 14px 18px;
+    }
+
+    .content-section p {
+        font-size: 0.85rem;
+    }
+
+    .price-tag {
+        font-size: 0.85rem;
+        padding: 9px 14px;
+    }
+
+    .cta-bottom {
+        padding: 40px 14px;
+    }
+
+    .cta-bottom p {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .social-icons-container {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links a {
+        font-size: 0.82rem;
+    }
+}
