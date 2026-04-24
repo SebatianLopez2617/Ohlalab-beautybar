@@ -94,7 +94,17 @@
             <p class="copyright">© 2026 Todos los derechos reservados</p>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const usuario = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        const btnLogin = document.querySelector('.nav-login-btn');
 
+        if (usuario && btnLogin) {
+            btnLogin.innerHTML = `Hola, ${usuario.nombre.split(' ')[0]} ✨`;
+            btnLogin.href = "../usuario/perfil.html";
+        }
+    });
+</script>
 <script src="agenda.js"></script>
 </body>
 </html>
