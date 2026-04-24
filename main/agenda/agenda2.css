@@ -1,219 +1,453 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* =====================================================
+   AGENDA2.CSS — Ohlalab Beauty Bar
+   Alineado exactamente con agenda.html
+   ===================================================== */
 
+/* --- 1. VARIABLES --- */
 :root {
   --fucsia: #EE5B9B;
+  --fucsia-dark: #d44182;
   --fucsia-oscuro: #c9407a;
+  --fucsia-soft: #FFF5F9;
   --fucsia-claro: #fdeaf2;
   --blanco: #ffffff;
-  --crema: #fdf6f9;
+  --crema: #fdfdfd;
   --texto: #3a2a2a;
-  --borde: #e8cfd4;
+  --texto-suave: #888;
+  --borde: #fce2ee;
+  --shadow: rgba(238, 91, 155, 0.2);
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --max-width: 1200px;
 }
 
-/* ANIMACIÓN DE CARGA */
-@keyframes entradaPagina {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- 2. BASE --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
   background-color: var(--crema);
   color: var(--texto);
-  animation: entradaPagina 0.7s ease-out;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* ── NAV / HEADER ORIGINAL ── */
-.navbar {
-  background: var(--blanco);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--borde);
+/* --- 3. ANIMACIONES --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- 4. HEADER --- */
+#main-header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 2px solid var(--fucsia);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  animation: fadeInDown 0.5s ease both;
 }
 
-.brand-logo { height: 52px; }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.brand-logo { height: 65px; width: auto; }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 1.5rem;
+  list-style: none;
+  gap: 20px;
   align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: var(--texto);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  transition: color 0.2s;
+  color: #333;
+  font-weight: 500;
+  transition: var(--transition);
 }
 
 .nav-links a:hover { color: var(--fucsia); }
 
 .nav-login-btn {
-  background: var(--fucsia);
-  color: white !important;
-  padding: 8px 18px;
+  background: var(--fucsia) !important;
+  color: #fff !important;
+  padding: 9px 22px;
   border-radius: 50px;
+  font-weight: 600;
 }
 
-/* ── HERO STRIP ── */
+.nav-login-btn:hover {
+  background: var(--fucsia-oscuro) !important;
+  transform: translateY(-2px);
+}
+
+/* --- 5. HERO STRIP --- */
 .hero-strip {
-  background: linear-gradient(135deg, var(--fucsia-claro) 0%, #fff 100%);
+  background: linear-gradient(135deg, var(--fucsia-claro) 0%, #fff 65%);
   text-align: center;
-  padding: 3rem 1rem 2.5rem;
+  padding: 3.5rem 1rem 3rem;
   border-bottom: 1px solid var(--borde);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInDown 0.6s 0.1s ease both;
+}
+
+/* Orbes decorativos de fondo */
+.hero-strip::before,
+.hero-strip::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-strip::before {
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, rgba(238,91,155,0.07) 0%, transparent 70%);
+  top: -100px; right: -60px;
+}
+
+.hero-strip::after {
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(238,91,155,0.05) 0%, transparent 70%);
+  bottom: -50px; left: 8%;
 }
 
 .hero-strip h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
   color: var(--fucsia-oscuro);
   margin-bottom: 0.5rem;
+  line-height: 1.15;
+  animation: fadeInUp 0.6s 0.2s ease both;
 }
 
-/* ── MAIN WRAP & CARD ── */
+.hero-strip p {
+  color: var(--texto-suave);
+  font-size: 0.97rem;
+  font-weight: 300;
+  animation: fadeInUp 0.6s 0.3s ease both;
+}
+
+/* ::after ya definido arriba como orbe decorativo inferior izquierdo */
+
+/* --- 6. MAIN WRAP --- */
 .main-wrap {
-  max-width: 680px;
-  margin: 3rem auto;
+  max-width: 700px;
+  margin: 3.5rem auto;
   padding: 0 1.2rem;
+  animation: fadeInUp 0.7s 0.2s ease both;
 }
 
+/* --- 7. CARD --- */
 .card {
   background: var(--blanco);
   border: 1px solid var(--borde);
-  border-radius: 18px;
-  padding: 2.8rem 2.5rem;
-  box-shadow: 0 4px 30px rgba(180, 120, 140, 0.15);
+  border-radius: 24px;
+  padding: 3rem 2.8rem;
+  box-shadow: 0 4px 30px var(--shadow);
+  transition: var(--transition);
+  animation: scaleIn 0.6s 0.25s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Acento decorativo esquina superior */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 130px; height: 130px;
+  background: radial-gradient(circle at top right, rgba(238,91,155,0.07), transparent 70%);
+  pointer-events: none;
+  border-radius: 0 24px 0 100%;
+}
+
+.card:hover {
+  box-shadow: 0 12px 50px rgba(238, 91, 155, 0.17);
+  transform: translateY(-2px);
 }
 
 .card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.75rem;
   color: var(--fucsia);
   margin-bottom: 0.3rem;
 }
 
 .card-subtitle {
   color: var(--texto-suave);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 300;
   margin-bottom: 2rem;
+  padding-bottom: 1.4rem;
   border-bottom: 1px solid var(--borde);
-  padding-bottom: 1.2rem;
 }
 
-/* ── FORM GRID ── */
+/* --- 8. FORMULARIO --- */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.2rem 1.5rem;
+  gap: 1.2rem 1.6rem;
 }
 
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* Entrada escalonada por campo */
+.form-group:nth-child(1) { animation-delay: 0.15s; }
+.form-group:nth-child(2) { animation-delay: 0.20s; }
+.form-group:nth-child(3) { animation-delay: 0.25s; }
+.form-group:nth-child(4) { animation-delay: 0.30s; }
+.form-group:nth-child(5) { animation-delay: 0.35s; }
+.form-group:nth-child(6) { animation-delay: 0.40s; }
+.form-group:nth-child(7) { animation-delay: 0.45s; }
+
 .form-group.full { grid-column: 1 / -1; }
 
+/* --- 9. LABELS --- */
 label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--fucsia);
 }
 
 .req { color: var(--fucsia); margin-left: 2px; }
 
-input, select, textarea {
+/* --- 10. INPUTS, SELECT, TEXTAREA --- */
+input,
+select,
+textarea {
   width: 100%;
-  padding: 0.72rem 1rem;
+  padding: 0.78rem 1.05rem;
   border: 1.5px solid var(--borde);
-  border-radius: 10px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.97rem;
-  background: var(--crema);
+  border-radius: 12px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  background: var(--fucsia-soft);
+  color: var(--texto);
   outline: none;
-  transition: border-color 0.2s;
+  transition: var(--transition);
 }
 
-input:focus, textarea:focus { border-color: var(--fucsia); background: #fff; }
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--fucsia);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(238, 91, 155, 0.1);
+}
 
-/* SERVICIOS CHIPS */
-.servicios-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.2rem; }
+input:hover:not(:focus),
+select:hover:not(:focus),
+textarea:hover:not(:focus) {
+  border-color: rgba(238, 91, 155, 0.45);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 95px;
+}
+
+/* --- 11. CHIPS DE SERVICIOS --- */
+.servicios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.2rem;
+}
+
 .chip-label input { display: none; }
+
 .chip-label span {
   display: inline-block;
-  padding: 0.42rem 1rem;
+  padding: 0.45rem 1.1rem;
   border: 1.5px solid var(--borde);
   border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.83rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  background: var(--fucsia-soft);
+  color: var(--fucsia-oscuro);
+  transition: var(--transition);
+  user-select: none;
+}
+
+.chip-label span:hover {
+  border-color: var(--fucsia);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
 .chip-label input:checked + span {
   background: var(--fucsia);
   border-color: var(--fucsia);
   color: #fff;
+  box-shadow: 0 4px 14px rgba(238, 91, 155, 0.35);
+  transform: translateY(-1px);
 }
 
+/* --- 12. BOTÓN SUBMIT --- */
 .btn-primary {
   grid-column: 1 / -1;
-  padding: 1rem;
+  width: 100%;
+  padding: 1.05rem;
   background: var(--fucsia);
   color: #fff;
-  border: none;
-  border-radius: 12px;
+  border: 2px solid var(--fucsia);
+  border-radius: 50px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
   font-weight: 700;
+  font-size: 0.95rem;
   text-transform: uppercase;
+  letter-spacing: 0.07em;
   cursor: pointer;
-  margin-top: 2rem;
-  transition: background 0.2s;
+  margin-top: 1.8rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(238, 91, 155, 0.32);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-primary:hover { background: var(--fucsia-oscuro); }
+/* Shimmer al hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  transition: left 0.5s ease;
+}
 
-/* ── FOOTER ORIGINAL STYLES ── */
+.btn-primary:hover {
+  background: var(--fucsia-oscuro);
+  border-color: var(--fucsia-oscuro);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(238, 91, 155, 0.42);
+}
+
+.btn-primary:hover::after { left: 140%; }
+
+.btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(238, 91, 155, 0.28);
+}
+
+/* --- 13. FOOTER — estilo exacto de avisos/styles.css --- */
 footer {
-  background: #2d1b21;
-  color: #fcecef;
-  text-align: center;
-  padding: 2.5rem 1rem;
-  margin-top: 4rem;
+    background: #fff;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 50px;
+    width: 100%;
+    margin-top: 4rem;
 }
 
-footer h3 {
-  font-family: 'Playfair Display', serif;
-  color: var(--fucsia);
-  margin-bottom: 0.5rem;
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.footer-info {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.footer-info h3 {
+    color: var(--fucsia);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.footer-info p {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Zona rosa suave — igual que .footer-content en avisos */
 .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    background: var(--fucsia-soft);
+    width: 100%;
+    padding: 40px 20px 16px;
+    border-top: 1px solid var(--border-soft);
 }
 
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+/* Iconos a color natural, sin invertir */
 .social-icons img {
-  height: 32px;
-  filter: brightness(0) invert(1); /* Los hace blancos para el fondo oscuro */
-  transition: opacity 0.2s;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: var(--transition);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
-.social-icons img:hover { opacity: 0.7; }
+.social-icons a:hover img {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 5px 10px var(--fucsia));
+}
 
 .copyright {
-  font-size: 0.8rem;
-  opacity: 0.7;
+    background: var(--fucsia-soft);
+    width: 100%;
+    text-align: center;
+    padding: 0 20px 30px;
+    font-size: 0.8rem;
+    color: #888;
 }
 
-/* RESPONSIVE */
-@media (max-width: 560px) {
+/* --- 14. RESPONSIVE --- */
+@media (max-width: 600px) {
   .form-grid { grid-template-columns: 1fr; }
-  .card { padding: 2rem 1.2rem; }
+
+  .card {
+    padding: 2rem 1.4rem;
+    border-radius: 18px;
+  }
+
+  .hero-strip h1 { font-size: 1.8rem; }
+
+  .nav-links { gap: 12px; }
 }

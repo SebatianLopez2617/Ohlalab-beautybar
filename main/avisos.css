@@ -1,3 +1,9 @@
+/* =====================================================
+   AVISOS.CSS — Ohlalab Beauty Bar  |  Index Principal
+   Moderno · Responsivo · Elegante
+   Alineado 100% con index.html
+   ===================================================== */
+
 /* --- 1. VARIABLES --- */
 :root {
     --fucsia: #EE5B9B;
@@ -5,66 +11,104 @@
     --fucsia-soft: #FFF5F9;
     --border-soft: #fce2ee;
     --shadow: rgba(238, 91, 155, 0.2);
+    --shadow-sm: 0 2px 12px rgba(238, 91, 155, 0.10);
+    --shadow-md: 0 8px 30px rgba(238, 91, 155, 0.18);
+    --shadow-lg: 0 20px 60px rgba(238, 91, 155, 0.22);
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     --max-width: 1200px;
 }
 
-/* --- 2. CONFIGURACIÓN BASE --- */
-* {
+/* --- 2. BASE --- */
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: 'DM Sans', 'Segoe UI', Roboto, sans-serif;
     background-color: #fdfdfd;
-    color: #444;
+    color: #3a2a2a;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
+img { display: block; max-width: 100%; }
+a  { text-decoration: none; color: inherit; }
+
 /* --- 3. ANIMACIONES --- */
 @keyframes fadeInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateX(-48px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateX(48px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
 }
 
 @keyframes scroll-announcement {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
 @keyframes scroll-carousel {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(calc((-300px - 20px) * 5)); }
 }
 
-.fade-in-left { animation: fadeInLeft 1.2s ease forwards; }
-.fade-in-right { animation: fadeInRight 1.2s ease forwards; }
-.reveal { opacity: 0; }
-.reveal.active { animation: fadeInUp 1s ease forwards; opacity: 1; }
+/* Clases de animación usadas en el HTML */
+.fade-in-left  { animation: fadeInLeft 1s 0.1s ease both; }
+.fade-in-right { animation: fadeInRight 1s 0.2s ease both; }
 
-/* --- 4. HEADER Y NAVEGACIÓN --- */
+/* Reveal al scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 4. HEADER --- */
 #main-header {
     width: 100%;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 2px solid var(--fucsia);
     position: sticky;
     top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    z-index: 200;
+    box-shadow: 0 2px 20px rgba(238, 91, 155, 0.08);
+    animation: fadeInDown 0.5s ease both;
 }
+
+/* El footer también usa id="main-header" — lo sobreescribimos abajo */
 
 .navbar {
     display: flex;
@@ -72,69 +116,231 @@ body {
     align-items: center;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 10px 24px;
+    gap: 1rem;
 }
 
-.brand-logo { height: 65px; width: auto; }
+.header-logo a { display: flex; align-items: center; }
+
+.brand-logo {
+    height: 62px;
+    width: auto;
+    transition: var(--transition);
+}
+.brand-logo:hover { transform: scale(1.04); }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 6px;
     align-items: center;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #3a2a2a;
+    padding: 8px 16px;
+    border-radius: 50px;
     transition: var(--transition);
+    letter-spacing: 0.01em;
 }
 
-.nav-links a:hover { color: var(--fucsia); }
+.nav-links a:hover {
+    color: var(--fucsia);
+    background: var(--fucsia-soft);
+}
 
-/* --- 5. HERO SECTION --- */
+/* Botón de iniciar sesión */
+.btn-registro {
+    background: #fff;
+    color: var(--fucsia) !important;
+    border: 2px solid var(--fucsia);
+    padding: 9px 22px !important;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    cursor: pointer;
+    display: inline-block;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(238, 91, 155, 0.2);
+}
+
+.btn-registro:hover {
+    background: var(--fucsia) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(238, 91, 155, 0.38);
+}
+
+/* --- 5. MAIN CONTAINER --- */
+.main-container { width: 100%; }
+
+/* --- 6. HERO --- */
 .home-hero {
     width: 100%;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding: 30px 5%;
-    min-height: 400px;
+    gap: 56px;
+    padding: 80px 6% 72px;
+    min-height: 88vh;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero-text { flex: 0 1 auto; max-width: 450px; padding-right: 10px; }
-.hero-text h2 { font-size: 2.5rem; color: var(--fucsia); margin-bottom: 10px; line-height: 1.1; }
-.hero-text p { margin-bottom: 20px; }
-
-.hero-image-wrapper { flex: 0 1 auto; display: flex; align-items: center; gap: 15px; }
-.hero-image img { 
-    width: 280px; 
-    border-radius: 20px; 
-    box-shadow: 12px 12px 0px var(--fucsia-soft); 
+/* Orbe decorativo de fondo izquierda */
+.home-hero::before {
+    content: '';
+    position: absolute;
+    width: 560px; height: 560px;
+    background: radial-gradient(circle, rgba(238,91,155,0.07) 0%, transparent 68%);
+    top: -120px; right: -60px;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
+/* Orbe inferior izquierdo */
+.home-hero::after {
+    content: '';
+    position: absolute;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(238,91,155,0.05) 0%, transparent 70%);
+    bottom: -60px; left: 4%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Texto hero */
+.hero-text {
+    flex: 0 1 460px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Pill decorativo sobre el h2 */
+.hero-text::before {
+    content: '✦ Beauty Bar ✦';
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    background: var(--fucsia-soft);
+    border: 1px solid var(--border-soft);
+    padding: 5px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.hero-text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.12;
+    margin-bottom: 18px;
+}
+
+/* Palabra "belleza" destacada */
+.hero-text h2 em {
+    font-style: italic;
+    color: var(--fucsia);
+}
+
+.hero-text p {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 300;
+    max-width: 400px;
+    margin-bottom: 32px;
+    line-height: 1.8;
+}
+
+/* Línea decorativa */
+.hero-divider {
+    width: 52px; height: 3px;
+    background: linear-gradient(90deg, var(--fucsia), var(--fucsia-soft));
+    border-radius: 2px;
+    margin-bottom: 28px;
+}
+
+/* Imagen hero */
+.hero-image-wrapper {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Tarjeta flotante sobre la imagen */
+.hero-image::after {
+    content: '⭐ +200 clientas felices';
+    position: absolute;
+    bottom: -18px;
+    left: -20px;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #3a2a2a;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+}
+
+/* Texto lateral de marca */
 .spa-brand-text {
-    max-width: 200px;
+    max-width: 180px;
     border-left: 2px solid var(--fucsia);
-    padding-left: 15px;
+    padding-left: 18px;
 }
 
-/* --- 6. CARRUSEL DE TRABAJOS --- */
+.spa-brand-text h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    color: var(--fucsia);
+    margin-bottom: 6px;
+}
+
+.spa-brand-text p {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* --- 7. CARRUSEL --- */
 .work-carousel {
     width: 100%;
     overflow: hidden;
     background: #fff;
-    padding: 40px 0;
+    padding: 48px 0;
     border-top: 1px solid var(--border-soft);
     border-bottom: 1px solid var(--border-soft);
 }
 
 .carousel-track {
     display: flex;
-    width: calc((300px + 20px) * 10); 
+    width: calc((300px + 20px) * 10);
     animation: scroll-carousel 40s linear infinite;
     gap: 20px;
     padding-left: 20px;
@@ -142,49 +348,51 @@ body {
 
 .carousel-track img {
     width: 300px;
-    height: 200px;
+    height: 210px;
     object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     transition: var(--transition);
+    flex-shrink: 0;
 }
 
 .carousel-track img:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 12px 25px var(--shadow);
+    transform: scale(1.05) translateY(-6px);
+    box-shadow: 0 14px 32px var(--shadow);
     cursor: pointer;
 }
 
 .work-carousel:hover .carousel-track { animation-play-state: paused; }
 
-/* --- 7. BARRA DE ANUNCIOS --- */
+/* --- 8. BARRA DE ANUNCIOS --- */
 .announcement-bar {
     width: 100%;
     background: var(--fucsia);
     color: white;
     overflow: hidden;
-    padding: 8px 0;
+    padding: 10px 0;
     white-space: nowrap;
 }
 
 .announcement-track {
     display: inline-block;
-    animation: scroll-announcement 25s linear infinite;
+    animation: scroll-announcement 28s linear infinite;
 }
 
 .announcement-track span {
     display: inline-block;
-    padding-right: 60px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    padding-right: 70px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
-/* --- 8. SECCIÓN HISTORIA --- */
+/* --- 9. NUESTRA HISTORIA --- */
 .nuestra-historia {
     width: 100%;
-    background: linear-gradient(180deg, #ffffff 0%, var(--fucsia-soft) 100%);
-    padding: 80px 20px;
+    background: linear-gradient(160deg, #fff 0%, var(--fucsia-soft) 100%);
+    padding: 100px 24px;
     display: flex;
     justify-content: center;
 }
@@ -193,57 +401,100 @@ body {
     max-width: var(--max-width);
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 72px;
 }
 
 .historia-image img {
     width: 100%;
-    max-width: 500px;
-    height: 450px;
+    max-width: 460px;
+    height: 460px;
     object-fit: cover;
     border-radius: 40px;
-    box-shadow: 20px 20px 0px var(--fucsia);
+    box-shadow: 24px 24px 0px var(--fucsia);
+    transition: var(--transition);
 }
 
-.historia-text h2 { font-size: 2.6rem; color: #333; margin: 10px 0 20px; }
+.historia-image img:hover { transform: translateY(-6px); }
 
-/* --- 9. GRID DE SERVICIOS --- */
+.historia-text {
+    flex: 1;
+}
+
+/* Span "Nuestra esencia" */
+.historia-text span {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 12px;
+}
+
+.historia-text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.historia-text p {
+    font-size: 0.97rem;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 14px;
+    max-width: 480px;
+}
+
+/* --- 10. TARJETAS DE SERVICIOS --- */
 .secondary-sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 15px; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     width: 100%;
     max-width: var(--max-width);
-    margin: 20px auto;
-    padding: 0 10px;
+    margin: 48px auto 60px;
+    padding: 0 20px;
 }
 
 .content-section {
     background: #fff;
-    padding: 30px;
-    border-radius: 25px;
+    border-radius: 24px;
     border: 1px solid var(--border-soft);
-    text-align: center;
+    overflow: hidden;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    padding: 0 0 26px;
 }
 
 .content-section:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px var(--shadow);
+    box-shadow: var(--shadow-lg);
     border-color: var(--fucsia);
 }
 
+.content-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 22px 24px 10px;
+}
+
 .card-image-container {
-    width: 100%;
-    max-width: 280px;
-    height: 380px;    
+    width: calc(100% - 20px);
+    height: 280px;
     overflow: hidden;
-    border-radius: 20px;
-    margin-bottom: 25px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    border-radius: 16px;
+    margin: 10px 10px 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    order: -1; /* imagen primero */
 }
 
 .card-img {
@@ -253,75 +504,105 @@ body {
     transition: var(--transition);
 }
 
-.content-section:hover .card-img { transform: scale(1.08); }
+.content-section:hover .card-img { transform: scale(1.07); }
 
-/* --- 10. BOTONES Y LINKS --- */
-.btn-registro, button, .card-link-bold {
-    background: #ffffff !important;
-    color: var(--fucsia) !important;
-    border: 2px solid var(--fucsia) !important;
-    padding: 12px 30px;
+.content-section p {
+    font-size: 0.88rem;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.7;
+    margin: 0 24px 20px;
+    flex-grow: 1;
+}
+
+/* Link "Ver catálogo" / "Reservar ahora" */
+.card-link-bold {
+    background: var(--fucsia-soft);
+    color: var(--fucsia);
+    border: 1.5px solid var(--border-soft);
+    padding: 10px 28px;
     border-radius: 50px;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 0.86rem;
     cursor: pointer;
-    text-decoration: none;
     display: inline-block;
     transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(238, 91, 155, 0.3);
+    margin: 0 24px;
 }
 
-.btn-registro:hover, button:hover, .card-link-bold:hover {
-    background: var(--fucsia) !important;
-    color: #ffffff !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(238, 91, 155, 0.5);
+.card-link-bold:hover {
+    background: var(--fucsia);
+    color: #fff;
+    border-color: var(--fucsia);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(238, 91, 155, 0.3);
 }
 
-/* --- 11. FOOTER REUTILIZABLE (.footer-reusable) --- */
+/* --- 11. FOOTER (.footer-reusable) ---
+   El HTML usa id="main-header" en el footer también,
+   pero las clases de contenido son las que importan.
+   Sobreescribimos el sticky/border del id para el footer. */
+footer.footer-reusable,
 .footer-reusable {
     background: #fff;
     border-top: 1px solid var(--border-soft);
     padding-top: 50px;
     width: 100%;
+    /* Anula el sticky del id="main-header" */
+    position: static !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
 }
 
-.footer-reusable .footer-map {
+.footer-map {
     max-width: var(--max-width);
     margin: 0 auto 40px;
     padding: 0 20px;
     text-align: center;
 }
 
-.footer-reusable .footer-map h3 { 
-    color: var(--fucsia); 
+.footer-map h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--fucsia);
     font-size: 1.8rem;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
-.footer-reusable .footer-map p {
+.footer-map p {
     color: #666;
     margin-bottom: 20px;
     font-weight: 500;
 }
 
-.footer-reusable .footer-map iframe { 
-    border-radius: 25px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.footer-map iframe {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    width: 100%;
+    max-width: 700px;
 }
 
-.footer-reusable .footer-content {
+/* Zona rosa — .footer-content */
+.footer-content {
     background: var(--fucsia-soft);
     padding: 40px 20px;
     text-align: center;
     border-top: 1px solid var(--border-soft);
 }
 
-/* Iconos Sociales Reutilizables */
-.social-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 25px; 
+.footer-content > p {
+    font-size: 0.85rem;
+    color: #888;
     margin-bottom: 20px;
+}
+
+/* Iconos sociales */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 16px;
 }
 
 .icono {
@@ -334,21 +615,22 @@ body {
 
 .social-links a:hover .icono {
     transform: translateY(-5px);
-    filter: drop-shadow(0 5px 10px var(--fucsia));
+    filter: drop-shadow(0 5px 12px var(--fucsia));
 }
 
-/* Links Legales (Privacidad/Términos) */
+/* Links legales (comparten .social-links .links-legales) */
 .links-legales {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
 }
 
 .links-legales a {
-    text-decoration: none;
     color: #888;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 500;
     transition: var(--transition);
     position: relative;
@@ -360,68 +642,171 @@ body {
 .links-legales a::after {
     content: '';
     position: absolute;
-    width: 0; height: 1.5px; bottom: 0; left: 50%;
-    background-color: var(--fucsia);
+    width: 0; height: 1.5px;
+    bottom: 0; left: 50%;
+    background: var(--fucsia);
     transition: var(--transition);
     transform: translateX(-50%);
 }
 
 .links-legales a:hover::after { width: 80%; }
 
-/* --- 12. COOKIE BANNER REUTILIZABLE (.cookie-reusable) --- */
-.cookie-reusable {
+/* --- 12. COOKIE BANNER --- */
+#cookie-banner.cookie-reusable {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 600px;
-    background: #ffffff;
+    background: #fff;
     padding: 15px 25px;
     border-radius: 50px;
     border: 1px solid var(--fucsia);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     z-index: 1999;
+    gap: 16px;
+    animation: fadeInUp 0.5s 1s ease both;
 }
 
-.cookie-reusable p { font-size: 0.9rem; margin: 0; color: #444; }
-
-/* --- 13. PRIVACY BANNER (MODAL CENTRAL) --- */
-#privacy-banner {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 25px;
-    box-shadow: 0 20px 80px rgba(0,0,0,0.3);
-    text-align: center;
-    z-index: 2000;
-    border: 2px solid var(--fucsia);
+#cookie-banner p {
+    font-size: 0.88rem;
+    margin: 0;
+    color: #555;
 }
 
-.terminos-scroll {
-    max-height: 120px;
-    overflow-y: auto;
-    margin: 15px 0;
-    padding: 10px;
-    background: var(--fucsia-soft);
-    font-size: 0.8rem;
-    border-radius: 10px;
-    text-align: left;
-    color: #666;
+/* Botón "Aceptar" del cookie */
+#cookie-banner button {
+    background: var(--fucsia);
+    color: #fff;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(238, 91, 155, 0.3);
 }
 
-/* --- 14. RESPONSIVE --- */
+#cookie-banner button:hover {
+    background: var(--fucsia-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(238, 91, 155, 0.4);
+}
+
+/* --- 13. RESPONSIVE --- */
+
+/* Tablet */
+@media (max-width: 960px) {
+    .home-hero {
+        gap: 36px;
+        padding: 60px 5%;
+        min-height: auto;
+    }
+
+    .historia-container { gap: 44px; }
+
+    .historia-image img {
+        max-width: 340px;
+        height: 380px;
+    }
+}
+
+/* Móvil */
 @media (max-width: 768px) {
-    .home-hero, .historia-container { flex-direction: column; text-align: center; }
-    .hero-text h2 { font-size: 2.2rem; }
-    .hero-image img, .historia-image img { width: 100%; height: auto; max-width: 350px; }
-    .secondary-sections { grid-template-columns: 1fr; }
-    .cookie-reusable { flex-direction: column; gap: 10px; border-radius: 20px; text-align: center; }
+    /* Hero */
+    .home-hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 52px 5% 60px;
+        gap: 40px;
+        min-height: auto;
+    }
+
+    .home-hero::before,
+    .home-hero::after { display: none; }
+
+    .hero-text { flex: none; width: 100%; }
+
+    .hero-text p { margin: 0 auto 28px; }
+
+    .hero-image img {
+        width: 240px;
+        height: 300px;
+        animation: none;
+        margin: 0 auto;
+    }
+
+    .hero-image::after { display: none; }
+
+    .hero-image-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .spa-brand-text {
+        border-left: none;
+        border-top: 2px solid var(--fucsia);
+        padding-left: 0;
+        padding-top: 16px;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    /* Historia */
+    .historia-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 36px;
+    }
+
+    .historia-image img {
+        max-width: 100%;
+        height: 280px;
+        box-shadow: 12px 12px 0 var(--fucsia);
+    }
+
+    .historia-text p { margin: 0 auto 14px; }
+
+    /* Servicios */
+    .secondary-sections {
+        grid-template-columns: 1fr;
+        padding: 0 14px;
+        margin: 32px auto 40px;
+    }
+
+    /* Cookie */
+    #cookie-banner.cookie-reusable {
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 20px;
+        text-align: center;
+        padding: 18px 20px;
+    }
+
+    /* Footer iframe */
+    .footer-map iframe {
+        height: 280px;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    .hero-text h2 { font-size: 2rem; }
+
+    .historia-text h2 { font-size: 1.9rem; }
+
+    .nav-links { gap: 4px; }
+
+    .nav-links a { padding: 7px 10px; font-size: 0.82rem; }
+
+    .links-legales { flex-direction: column; gap: 6px; }
+    .links-legales a::after { display: none; }
 }
