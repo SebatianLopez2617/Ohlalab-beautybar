@@ -1,0 +1,75 @@
+/* Variables de color para mantener la identidad visual */
+:root {
+    --primary-color: #EE5B9B; /* Fucsia Ohlalab */
+    --text-color: #333;
+    --bg-color: #f9f9f9;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.content h2 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-top: 25px;
+}
+
+.content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Botón único para volver */
+.btn-back {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #d44a86;
+    transform: translateY(-2px);
+}
