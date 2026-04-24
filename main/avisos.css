@@ -810,3 +810,25 @@ footer.footer-reusable,
     .links-legales { flex-direction: column; gap: 6px; }
     .links-legales a::after { display: none; }
 }
+
+
+#cookie-banner.cookie-reusable {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    border: 1px solid var(--fucsia);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    z-index: 1999;
+    animation: fadeInUp 0.5s 1s ease both;
+}

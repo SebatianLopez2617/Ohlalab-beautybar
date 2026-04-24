@@ -1,125 +1,353 @@
+/* =====================================================
+   INICIO_DE_SESION.CSS — Ohlalab Beauty Bar
+   Alineado con el sistema de diseño del sitio
+   ===================================================== */
+
+/* --- 1. VARIABLES --- */
 :root {
     --fucsia: #EE5B9B;
-    --fucsia-soft: rgba(255, 245, 249, 0.9); /* Versión con transparencia */
-    --shadow: rgba(0, 0, 0, 0.2);
-    --transition: all 0.4s ease;
+    --fucsia-dark: #d44182;
+    --fucsia-oscuro: #c9407a;
+    --fucsia-soft: #FFF5F9;
+    --border-soft: #fce2ee;
+    --shadow: rgba(238, 91, 155, 0.2);
+    --shadow-md: 0 8px 30px rgba(238, 91, 155, 0.18);
+    --shadow-lg: 0 20px 60px rgba(238, 91, 155, 0.22);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --max-width: 1200px;
 }
 
-* {
+/* --- 2. BASE --- */
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* --- FONDO CON IMAGEN --- */
 body.bg-login {
-    font-family: 'Segoe UI', sans-serif;
-    background-image: url('../Fotos/background.jpeg'); /* Tu imagen */
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    background-image: url('../Fotos/background.jpeg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* La imagen no se mueve */
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    color: #3a2a2a;
+    line-height: 1.6;
 }
 
-/* Capa oscura para que el formulario resalte */
+/* --- 3. ANIMACIONES --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- 4. OVERLAY --- */
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Ajusta el 0.4 para más o menos oscuridad */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1;
 }
 
+/* --- 5. WRAPPER --- */
 .main-wrapper {
     position: relative;
-    z-index: 2; /* Por encima de la capa oscura */
+    z-index: 2;
     width: 100%;
-    max-width: 850px;
-    padding: 20px;
+    max-width: 860px;
+    padding: 24px 20px;
+    animation: fadeInUp 0.6s ease both;
 }
 
-/* --- CONTENEDOR EFECTO CRISTAL --- */
+/* Botón volver */
+.btn-retorno {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    transition: var(--transition);
+    opacity: 0.9;
+}
+
+.btn-retorno:hover {
+    opacity: 1;
+    transform: translateX(-3px);
+}
+
+/* --- 6. CONTENEDOR PRINCIPAL --- */
 .container {
     display: flex;
-    background: rgba(255, 255, 255, 0.9); /* Blanco con transparencia */
-    backdrop-filter: blur(10px); /* Desenfoque de fondo elegante */
-    border-radius: 30px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: scaleIn 0.5s 0.1s ease both;
 }
 
+/* --- 7. CAJAS LOGIN / REGISTRO --- */
 .box {
     flex: 1;
-    padding: 50px 40px;
+    padding: 52px 42px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-box {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.97);
 }
 
 .register-box {
     background: var(--fucsia-soft);
-    border-left: 1px solid rgba(238, 91, 155, 0.2);
+    border-left: 1px solid var(--border-soft);
+    position: relative;
+    overflow: hidden;
 }
 
-/* --- ESTILOS DE TEXTO E INPUTS --- */
-h2 { color: var(--fucsia); margin-bottom: 10px; font-size: 1.8rem; }
-p { color: #555; margin-bottom: 25px; font-size: 0.9rem; }
+/* Orbe decorativo registro */
+.register-box::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(238,91,155,0.08) 0%, transparent 70%);
+    top: -80px;
+    right: -60px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* --- 8. PILL DECORATIVO (como hero-eyebrow del sitio) --- */
+.box-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    background: var(--fucsia-soft);
+    border: 1px solid var(--border-soft);
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+}
+
+/* --- 9. TIPOGRAFÍA --- */
+.box h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.box p {
+    font-size: 0.88rem;
+    color: #888;
+    font-weight: 300;
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-soft);
+    width: 100%;
+}
+
+/* --- 10. FORMULARIO --- */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
 input {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+    padding: 0.78rem 1.05rem;
+    border: 1.5px solid var(--border-soft);
     border-radius: 12px;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    font-size: 0.92rem;
+    background: #fff;
+    color: #3a2a2a;
     outline: none;
     transition: var(--transition);
 }
 
-input:focus {
-    border-color: var(--fucsia);
-    box-shadow: 0 0 10px rgba(238, 91, 155, 0.3);
+input::placeholder {
+    color: #bbb;
+    font-weight: 300;
 }
 
-/* --- BOTONES GLOW --- */
+input:focus {
+    border-color: var(--fucsia);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(238, 91, 155, 0.1);
+}
+
+input:hover:not(:focus) {
+    border-color: rgba(238, 91, 155, 0.4);
+}
+
+/* --- 11. BOTÓN SUBMIT --- */
 .btn-form {
     width: 100%;
-    background: #fff !important;
-    color: var(--fucsia) !important;
-    border: 2px solid var(--fucsia) !important;
-    padding: 12px;
+    padding: 0.9rem;
+    background: #fff;
+    color: var(--fucsia);
+    border: 2px solid var(--fucsia);
     border-radius: 50px;
-    font-weight: bold;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 5px 15px rgba(238, 91, 155, 0.2);
+    box-shadow: 0 4px 16px rgba(238, 91, 155, 0.2);
+    margin-top: 6px;
 }
 
 .btn-form:hover {
-    background: var(--fucsia) !important;
-    color: #fff !important;
-    transform: translateY(-3px);
+    background: var(--fucsia);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(238, 91, 155, 0.38);
 }
+
+.btn-form:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(238, 91, 155, 0.2);
+}
+
+/* --- 12. RESPONSIVE --- */
+
+/* Tablet */
+@media (max-width: 768px) {
+    body.bg-login {
+        background-attachment: scroll;
+        align-items: flex-start;
+        padding: 30px 0;
+    }
+
+    .container {
+        flex-direction: column;
+        border-radius: 22px;
+    }
+
+    .box {
+        padding: 38px 30px;
+    }
+
+    .register-box {
+        border-left: none;
+        border-top: 1px solid var(--border-soft);
+    }
+
+    .box h2 { font-size: 1.55rem; }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+    body.bg-login {
+        padding: 16px 0;
+    }
+
+    .main-wrapper {
+        padding: 16px 12px;
+    }
+
+    .container {
+        border-radius: 18px;
+    }
+
+    .box {
+        padding: 28px 20px;
+    }
+
+    .box h2 { font-size: 1.35rem; }
+    .box p  { font-size: 0.83rem; margin-bottom: 22px; padding-bottom: 16px; }
+
+    input {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.88rem;
+    }
+
+    .btn-form {
+        padding: 0.82rem;
+        font-size: 0.82rem;
+    }
+
+    .btn-retorno {
+        font-size: 0.8rem;
+        margin-bottom: 14px;
+    }
+}
+
+/* Móvil muy pequeño */
+@media (max-width: 360px) {
+    .box {
+        padding: 22px 16px;
+    }
+
+    .box h2 { font-size: 1.2rem; }
+}
+
 
 .btn-retorno {
-    color: white; /* Blanco para que se vea sobre el fondo oscuro */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--fucsia);
+    background: rgba(255, 255, 255, 0.95);
     text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 2px solid var(--fucsia);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
 }
 
-/* --- RESPONSIVO --- */
-@media (max-width: 768px) {
-    .container { flex-direction: column; }
-    .register-box { border-left: none; border-top: 1px solid rgba(238, 91, 155, 0.1); }
+.btn-retorno::before {
+    content: '←';
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-retorno:hover {
+    background: var(--fucsia);
+    color: #fff;
+    border-color: var(--fucsia);
+    transform: translateX(-3px);
+    box-shadow: 0 10px 28px rgba(238, 91, 155, 0.4);
+}
+
+.btn-retorno:hover::before {
+    transform: translateX(-3px);
 }
