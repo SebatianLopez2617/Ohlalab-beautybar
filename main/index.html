@@ -127,6 +127,20 @@
     <p>Usamos cookies 🍪 para mejorar tu experiencia. ✨</p>
     <button onclick="document.getElementById('cookie-banner').style.display='none'">Aceptar</button>
 </div>
+
+
+<div id="modalTerminos" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Términos y Condiciones</h2>
+        <p>Bienvenido a <strong>Ohlalab BeautyBar</strong>. Al utilizar nuestro sitio, aceptas nuestros términos de servicio y aviso de privacidad para garantizar la mejor experiencia en tus citas.</p>
+        <div class="modal-buttons">
+            <a href="terminos.html" class="btn-read">Leer detalles</a>
+            <button id="btnAceptar" class="btn-accept">Aceptar y Continuar</button>
+        </div>
+    </div>
+</div>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const usuario = JSON.parse(localStorage.getItem('usuarioLogueado'));
@@ -150,6 +164,68 @@
             }
         });
     });
+
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Lógica del Usuario Logueado (Tu código original)
+        const usuario = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        const btnLogin = document.querySelector('.btn-registro');
+
+        if (usuario && btnLogin) {
+            btnLogin.innerHTML = `Hola, ${usuario.nombre.split(' ')[0]} ✨`;
+            btnLogin.href = "perfil.html"; 
+        }
+
+        // 2. Lógica de Persistencia para Términos y Condiciones
+        const modal = document.getElementById('modalTerminos');
+        const btnAceptarModal = document.getElementById('btnAceptar');
+
+        // Verificar si ya aceptó los términos anteriormente
+        if (localStorage.getItem('terminosAceptados') === 'true') {
+            modal.style.display = 'none';
+        }
+
+        btnAceptarModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            localStorage.setItem('terminosAceptados', 'true');
+        });
+
+        // 3. Lógica de Persistencia para el Banner de Cookies
+        const cookieBanner = document.getElementById('cookie-banner');
+        const btnAceptarCookies = cookieBanner.querySelector('button');
+
+        // Verificar si ya aceptó las cookies anteriormente
+        if (localStorage.getItem('cookiesAceptadas') === 'true') {
+            cookieBanner.style.display = 'none';
+        }
+
+        btnAceptarCookies.addEventListener('click', () => {
+            cookieBanner.style.display = 'none';
+            localStorage.setItem('cookiesAceptadas', 'true');
+        });
+    });
+
+    // 4. Animación de revelado al bajar (Tu código original)
+    window.addEventListener('scroll', () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const revealTop = el.getBoundingClientRect().top;
+            if (revealTop < windowHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    });
+
+    
+
+
+
+
+
+
+
 </script>
 </body>
 </html>

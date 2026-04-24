@@ -664,7 +664,7 @@ footer.footer-reusable,
     border-radius: 50px;
     border: 1px solid var(--fucsia);
     display: flex;
-    
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     z-index: 1999;
@@ -812,3 +812,74 @@ footer.footer-reusable,
 }
 
 
+/* Fondo oscuro translúcido */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex; /* Se cambia a 'none' mediante JS tras aceptar */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Caja de la ventana */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-top: 5px solid #EE5B9B;
+    animation: fadeIn 0.4s ease;
+}
+
+.modal-content h2 {
+    color: #EE5B9B;
+    margin-top: 0;
+}
+
+.modal-content p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Botones */
+.modal-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-accept {
+    background-color: #EE5B9B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-accept:hover {
+    background-color: #d64986;
+}
+
+.btn-read {
+    color: #EE5B9B;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
