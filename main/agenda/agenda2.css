@@ -438,17 +438,4 @@ footer {
     color: #888;
 }
 
-/* --- 14. RESPONSIVE --- */
-@media (max-width: 600px) {
-  .form-grid { grid-template-columns: 1fr; }
-
-  .card {
-    padding: 2rem 1.4rem;
-    border-radius: 18px;
-  }
-
-  .hero-strip h1 { font-size: 1.8rem; }
-
-  .nav-links { gap: 12px; }
-}
 
